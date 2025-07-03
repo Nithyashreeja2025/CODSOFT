@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Innovative portfolio of Nithyashreeja, a second-year CSE student at SSN College of Engineering, showcasing skills and projects with a futuristic design.">
+  <title>Nithyashreeja's Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Roboto:wght@300;400&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary-color: #00d4ff;
+      --secondary-color: #ff00ff;
+      --accent-color: #00ff88;
+      --background-dark: #0a0a0a;
+      --card-shadow: 0 8px 32px rgba(0, 212, 255, 0.2);
+      --glow-effect: 0 0 15px rgba(0, 212, 255, 0.5);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Roboto', sans-serif;
+      background: var(--background-dark);
+      color: #e0e0e0;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle at 50% 50%, rgba(0, 212, 255, 0.1), transparent 70%);
+      z-index: -1;
+      animation: bgPulse 12s ease-in-out infinite;
+    }
+
+    @keyframes bgPulse {
+      0%, 100% { opacity: 0.3; }
+      50% { opacity: 0.6; }
+    }
+
+    header {
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100"><circle cx="50" cy="50" r="2" fill="rgba(0,212,255,0.4)"/></svg>') repeat;
+      background-size: 50px;
+      animation: floatBg 30s linear infinite;
+      position: relative;
+    }
+
+    @keyframes floatBg {
+      0% { background-position: 0 0; }
+      100% { background-position: 100px 100px; }
+    }
+
+    header h1 {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 4.5em;
+      background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-shadow: var(--glow-effect);
+      animation: textGlow 2s ease-in-out infinite;
+    }
+
+    @keyframes textGlow {
+      0%, 100% { text-shadow: 0 0 10px var(--primary-color); }
+      50% { text-shadow: 0 0 20px var(--primary-color), 0 0 30px var(--secondary-color); }
+    }
+
+    header p {
+      font-size: 1.5em;
+      margin-top: 20px;
+      color: #b0b0b0;
+      max-width: 600px;
+    }
+
+    .nav {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      z-index: 1000;
+    }
+
+    .nav a {
+      color: var(--primary-color);
+      text-decoration: none;
+      margin: 0 15px;
+      font-family: 'Orbitron', sans-serif;
+      font-size: 1.1em;
+      transition: color 0.3s ease;
+    }
+
+    .nav a:hover {
+      color: var(--accent-color);
+    }
+
+    section {
+      padding: 100px 20px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .about {
+      display: flex;
+      align-items: center;
+      gap: 40px;
+      background: rgba(20, 20, 20, 0.9);
+      padding: 60px;
+      border-radius: 25px;
+      box-shadow: var(--card-shadow);
+      animation: slideUp 1s ease-in-out;
+    }
+
+    .about img {
+      width: 250px;
+      height: 250px;
+      border-radius: 50%;
+      border: 4px solid var(--primary-color);
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+
+    .about img:hover {
+      transform: rotate(360deg) scale(1.1);
+    }
+
+    .about-text h2 {
+      font-family: 'Orbitron', sans-serif;
+      color: var(--accent-color);
+      margin-bottom: 20px;
+    }
+
+    .skills {
+      background: rgba(20, 20, 20, 0.9);
+      border-radius: 25px;
+      padding: 60px;
+      margin-top: 60px;
+      box-shadow: var(--card-shadow);
+      text-align: center;
+    }
+
+    .skills h2 {
+      font-family: 'Orbitron', sans-serif;
+      color: var(--primary-color);
+      margin-bottom: 40px;
+    }
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 20px;
+    }
+
+    .skill-item {
+      background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+      padding: 15px;
+      border-radius: 15px;
+      color: #fff;
+      font-weight: bold;
+      transition: transform 0.3s ease;
+    }
+
+    .skill-item:hover {
+      transform: scale(1.1);
+    }
+
+    .projects {
+      margin-top: 60px;
+      text-align: center;
+    }
+
+    .projects h2 {
+      font-family: 'Orbitron', sans-serif;
+      color: var(--accent-color);
+      margin-bottom: 40px;
+    }
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+    }
+
+    .project-card {
+      background: rgba(20, 20, 20, 0.9);
+      padding: 30px;
+      border-radius: 25px;
+      box-shadow: var(--card-shadow);
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.5s ease;
+    }
+
+    .project-card:hover {
+      transform: translateY(-10px);
+    }
+
+    .project-card h3 {
+      font-family: 'Orbitron', sans-serif;
+      color: var(--primary-color);
+      margin-bottom: 15px;
+    }
+
+    .project-card p {
+      color: #b0b0b0;
+    }
+
+    .resume {
+      text-align: center;
+      margin-top: 60px;
+      padding: 60px;
+      background: rgba(20, 20, 20, 0.9);
+      border-radius: 25px;
+      box-shadow: var(--card-shadow);
+    }
+
+    .resume h2 {
+      font-family: 'Orbitron', sans-serif;
+      color: var(--accent-color);
+      margin-bottom: 20px;
+    }
+
+    .resume a {
+      display: inline-block;
+      padding: 15px 40px;
+      background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+      color: #fff;
+      text-decoration: none;
+      border-radius: 50px;
+      font-family: 'Orbitron', sans-serif;
+      transition: transform 0.3s ease;
+    }
+
+    .resume a:hover {
+      transform: scale(1.1);
+    }
+
+    .contact {
+      margin-top: 60px;
+      padding: 60px;
+      background: rgba(20, 20, 20, 0.9);
+      border-radius: 25px;
+      box-shadow: var(--card-shadow);
+      text-align: center;
+    }
+
+    .contact h2 {
+      font-family: 'Orbitron', sans-serif;
+      color: var(--primary-color);
+      margin-bottom: 20px;
+    }
+
+    .contact p {
+      margin: 15px 0;
+    }
+
+    .contact a {
+      color: var(--accent-color);
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    .contact a:hover {
+      color: var(--secondary-color);
+    }
+
+    footer {
+      text-align: center;
+      padding: 40px 20px;
+      background: linear-gradient(135deg, var(--background-dark), #141414);
+      color: #b0b0b0;
+      margin-top: 60px;
+    }
+
+    @keyframes slideUp {
+      from { transform: translateY(100px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+
+    @media (max-width: 768px) {
+      header h1 {
+        font-size: 3em;
+      }
+
+      .about {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .about img {
+        width: 200px;
+        height: 200px;
+      }
+
+      .nav {
+        position: static;
+        margin: 20px 0;
+      }
+    }
+
+    @media (max-width: 480px) {
+      header h1 {
+        font-size: 2.5em;
+      }
+
+      .about img {
+        width: 150px;
+        height: 150px;
+      }
+
+      .projects-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav class="nav">
+    <a href="#about">About</a>
+    <a href="#skills">Skills</a>
+    <a href="#projects">Projects</a>
+    <a href="#resume">Resume</a>
+    <a href="#contact">Contact</a>
+  </nav>
+
+  <header>
+    <h1>Nithyashreeja</h1>
+    <p>Second Year CSE | Integrated M.Tech | SSN College of Engineering</p>
+  </header>
+
+  <section id="about" class="about">
+    <img src="C:\Users\nithy\OneDrive\Documentos\project flutter\abb.jpg" alt="Portrait of Nithyashreeja" loading="lazy">
+    <div class="about-text">
+      <h2>About Me</h2>
+      <p>Hey there! I'm Nithyashreeja, a second-year student diving into the world of Computer Science and Engineering through a five-year Integrated M.Tech at SSN College of Engineering. I'm fueled by curiosity, a love for coding, and a knack for turning ideas into impactful projects.</p>
+    </div>
+  </section>
+
+  <section id="skills" class="skills">
+    <h2>Skills</h2>
+    <div class="skills-grid">
+      <div class="skill-item">C</div>
+      <div class="skill-item">Python</div>
+      <div class="skill-item">Java</div>
+      <div class="skill-item">HTML</div>
+      <div class="skill-item">CSS</div>
+      <div class="skill-item">JavaScript</div>
+      <div class="skill-item">Problem Solving</div>
+    </div>
+  </section>
+
+  <section id="projects" class="projects">
+    <h2>Projects</h2>
+    <div class="projects-grid">
+      <div class="project-card">
+        <h3>Mess Bill Management System (C)</h3>
+        <p>A console-based app for hostel mess bill management, handling student registration, daily consumption, billing, and summary generation.</p>
+      </div>
+      <div class="project-card">
+        <h3>Logistics Management System (Python)</h3>
+        <p>A Python-based system for efficient logistics, featuring route planning, real-time shipment tracking, and delivery time predictions.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="resume" class="resume">
+    <h2>Resume</h2>
+    <p>Explore my qualifications and experience in detail.</p>
+    <a href="C:\Users\nithy\OneDrive\Documentos\project flutter\Nithyashreejaresume.pdf" download>Download Resume</a>
+  </section>
+
+  <section id="contact" class="contact">
+    <h2>Contact</h2>
+    <p>Email: <a href="mailto:abccdgamil.com@gmail.com">nithyashreejagopi@gmail.com</a></p>
+    <p>Phone: <a href="tel:+91456677777">+91-7305302981</a></p>
+    <p><a href="https://www.linkedin.com/in/nithyashreeja-gopinath-00b52732a/">LinkedIn Profile</a></p>
+  </section>
+
+  <footer>
+    <p>© 2025 Nithyashreeja. Crafted with passion.</p>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Portfolio of Nithyashreeja, a second-year CSE student at SSN College of Engineering, showcasing skills and projects.">
+  <title>Nithyashreeja</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary-shadow: 0 10px 40px rgba(0, 247, 255, 0.15);
+      --border-radius: 20px;
+      --primary-gradient: linear-gradient(45deg, #ff00ff, #00f7ff);
+      --text-shadow: 0 0 15px rgba(0, 247, 255, 0.5);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: #121212;
+      color: #e8ecef;
+      line-height: 1.6;
+      position: relative;
+      overflow-x: hidden;
+      animation: gradientShift 15s ease infinite;
+      background: linear-gradient(270deg, #121212, #1c2526, #0a0e0f);
+      background-size: 600% 600%;
+    }
+
+    @keyframes gradientShift {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><circle cx="10" cy="10" r="2" fill="rgba(0, 247, 255, 0.3)"/><circle cx="50" cy="50" r="1.5" fill="rgba(255, 0, 255, 0.3)"/><circle cx="90" cy="90" r="1" fill="rgba(0, 255, 136, 0.3)"/></svg>') repeat;
+      opacity: 0.1;
+      animation: particleFloat 20s linear infinite;
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    @keyframes particleFloat {
+      0% { transform: translate(0, 0); }
+      100% { transform: translate(-100px, -100px); }
+    }
+
+    header {
+      background: linear-gradient(135deg, #1c2526, #0a0e0f);
+      color: #ffffff;
+      padding: 80px 20px;
+      text-align: center;
+      animation: slideInDown 1s ease-in-out;
+      position: relative;
+      overflow: hidden;
+    }
+
+    header::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+      pointer-events: none;
+      animation: pulseGlow 8s ease-in-out infinite;
+    }
+
+    @keyframes pulseGlow {
+      0% { opacity: 0.1; }
+      50% { opacity: 0.2; }
+      100% { opacity: 0.1; }
+    }
+
+    header h1 {
+      font-size: 3.5em;
+      font-weight: 600;
+      letter-spacing: 1.5px;
+      background: var(--primary-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-shadow: var(--text-shadow);
+    }
+
+    header p {
+      font-size: 1.3em;
+      color: #d0d8e0;
+      margin-top: 15px;
+    }
+
+    section {
+      padding: 80px 15px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .about {
+      text-align: center;
+      background: #1e2a2f;
+      border-radius: var(--border-radius);
+      padding: 50px;
+      box-shadow: var(--primary-shadow);
+      animation: fadeIn 1s ease-in-out;
+    }
+
+    .about img {
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      margin-bottom: 30px;
+      border: 5px solid #ff00ff;
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
+      object-fit: cover;
+      background: url('fallback-image.jpg') center/cover no-repeat;
+    }
+
+    .about img:hover {
+      transform: scale(1.12);
+      box-shadow: 0 0 20px rgba(255, 0, 255, 0.3);
+    }
+
+    .about h2 {
+      color: #00f7ff;
+      font-weight: 600;
+      margin-bottom: 20px;
+    }
+
+    .skills {
+      background: #1e2a2f;
+      border-radius: var(--border-radius);
+      padding: 50px;
+      margin-top: 40px;
+      box-shadow: var(--primary-shadow);
+    }
+
+    .skills h2 {
+      color: #00f7ff;
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .skills ul {
+      list-style: none;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+    }
+
+    .skills li {
+      background: var(--primary-gradient);
+      color: #ffffff;
+      padding: 12px 28px;
+      border-radius: 50px;
+      font-weight: 600;
+      box-shadow: 0 5px 20px rgba(255, 0, 255, 0.3);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .skills li:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 8px 25px rgba(0, 255, 136, 0.5);
+    }
+
+    .projects {
+      margin-top: 40px;
+    }
+
+    .projects h2 {
+      color: #00f7ff;
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 30px;
+    }
+
+    .project-card {
+      background: #1e2a2f;
+      padding: 30px;
+      border-radius: var(--border-radius);
+      box-shadow: var(--primary-shadow);
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
+      position: relative;
+      overflow: hidden;
+      animation: zoomIn 0.8s ease-in-out;
+    }
+
+    .project-card:hover {
+      transform: translateY(-12px);
+      box-shadow: 0 15px 50px rgba(0, 247, 255, 0.3);
+    }
+
+    .project-card h3 {
+      color: #00ff88;
+      font-size: 1.6em;
+      margin-bottom: 15px;
+    }
+
+    .project-card::before {
+      content: "";
+      position: absolute;
+      width: 100%;
+      height: 6px;
+      background: var(--primary-gradient);
+      top: 0;
+      left: 0;
+    }
+
+    .resume {
+      text-align: center;
+      background: #1e2a2f;
+      border-radius: var(--border-radius);
+      padding: 50px;
+      margin-top: 40px;
+      box-shadow: var(--primary-shadow);
+    }
+
+    .resume h2 {
+      color: #00f7ff;
+      margin-bottom: 20px;
+    }
+
+    .resume a {
+      display: inline-block;
+      margin-top: 20px;
+      padding: 15px 35px;
+      background: var(--primary-gradient);
+      color: #ffffff;
+      text-decoration: none;
+      border-radius: 50px;
+      font-weight: 600;
+      box-shadow: 0 5px 20px rgba(255, 0, 255, 0.3);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .resume a:hover, .resume a:focus {
+      transform: translateY(-8px);
+      box-shadow: 0 8px 25px rgba(0, 247, 255, 0.5);
+      outline: 2px solid #00f7ff;
+    }
+
+    .contact {
+      text-align: center;
+      background: #1e2a2f;
+      border-radius: var(--border-radius);
+      padding: 50px;
+      margin-top: 40px;
+      box-shadow: var(--primary-shadow);
+    }
+
+    .contact h2 {
+      color: #00f7ff;
+      margin-bottom: 20px;
+    }
+
+    .contact p {
+      margin: 15px 0;
+      font-size: 1.1em;
+    }
+
+    .contact a {
+      color: #ff00ff;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    .contact a:hover, .contact a:focus {
+      color: #00ff88;
+      outline: 2px solid #00ff88;
+    }
+
+    footer {
+      background: linear-gradient(135deg, #1c2526, #0a0e0f);
+      color: #d0d8e0;
+      text-align: center;
+      padding: 40px 20px;
+      margin-top: 40px;
+    }
+
+    @keyframes slideInDown {
+      from { transform: translateY(-100px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes zoomIn {
+      from { transform: scale(0.5); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+
+    @media (max-width: 768px) {
+      header h1 {
+        font-size: 2.8em;
+      }
+
+      .about, .skills, .resume, .contact {
+        padding: 30px;
+      }
+
+      .project-card {
+        padding: 20px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .projects-grid {
+        grid-template-columns: 1fr;
+      }
+
+      header h1 {
+        font-size: 2.2em;
+      }
+
+      .about img {
+        width: 150px;
+        height: 150px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Nithyashreeja</h1>
+    <p>Second Year CSE | Integrated M.Tech | SSN College of Engineering</p>
+  </header>
+
+  <section class="about">
+    <img src="C:\Users\nithy\OneDrive\Documentos\project flutter\abb.jpg" alt="Portrait of Nithyashreeja" loading="lazy">
+    <h2>About Me</h2>
+    <p>Hi! I am Nithyashreeja, a second-year student pursuing a five-year Integrated M.Tech course in Computer Science and Engineering at SSN College of Engineering. I am driven by a passion for crafting real-world projects, mastering the art of coding, and solving complex problems with elegant solutions.</p>
+  </section>
+
+  <section class="skills">
+    <h2>Skills</h2>
+    <ul>
+      <li>C</li>
+      <li>Python</li>
+      <li>Java</li>
+      <li>HTML</li>
+      <li>CSS</li>
+      <li>JavaScript</li>
+      <li>Problem Solving</li>
+    </ul>
+  </section>
+
+  <section class="projects">
+    <h2>Projects</h2>
+    <div class="projects-grid">
+      <div class="project-card">
+        <h3>Mess Bill Management System (C)</h3>
+        <p>A console-based application to manage hostel mess bill calculations, including student registration, daily consumption tracking, billing, and summary generation.</p>
+      </div>
+      <div class="project-card">
+        <h3>Logistics Management System (Python)</h3>
+        <p>A smart logistics system built with Python to streamline route planning, track shipments in real-time, and estimate delivery times using predictive algorithms.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="resume">
+    <h2>Resume</h2>
+    <p>Want to know more about my qualifications and experience?</p>
+    <a href="C:\Users\nithy\OneDrive\Documentos\project flutter\Nithyashreejaresume.pdf" download>Download Resume</a>
+  </section>
+
+  <section class="contact">
+    <h2>Contact</h2>
+    <p>Email: <a href="mailto:your-email@example.com">nithyashreejagopi@gmail.com</a></p>
+    <p>Phone: <a href="tel:+919876543210">+91-7305302981</a></p>
+    <p><a href="https://www.linkedin.com/in/nithyashreeja-gopinath-00b52732a/">Linkedin profile</a></p>
+  </section>
+
+  <footer>
+    <p>© 2025 Nithyashreeja. </p>
+  </footer>
+
+</body>
+</html>   this is a sample create a more innovative landing page shouldbe different
