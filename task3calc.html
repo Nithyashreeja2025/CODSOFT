@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Elegant Calculator</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      background: linear-gradient(135deg, #1e1e2f, #2a2a4a);
+    }
+
+    .calculator {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      border-radius: 20px;
+      padding: 20px;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+      width: 320px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .display {
+      background: rgba(0, 0, 0, 0.3);
+      color: #fff;
+      font-size: 2rem;
+      padding: 20px;
+      text-align: right;
+      border-radius: 10px;
+      margin-bottom: 20px;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      transition: all 0.3s ease;
+      animation: fadeIn 0.5s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .buttons {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+    }
+
+    button {
+      background: rgba(255, 255, 255, 0.1);
+      border: none;
+      color: #fff;
+      font-size: 1.2rem;
+      padding: 15px;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    button:hover {
+      background: rgba(255, 255, 255, 0.2);
+      transform: scale(1.05);
+    }
+
+    button:active {
+      transform: scale(0.95);
+    }
+
+    button::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 0;
+      height: 0;
+      background: rgba(255, 255, 255, 0.3);
+      border-radius: 50%;
+      transform: translate(-50%, -50%);
+      transition: width 0.4s ease, height 0.4s ease;
+    }
+
+    button:hover::before {
+      width: 200px;
+      height: 200px;
+    }
+
+    .operator {
+      color: #ff9500;
+    }
+
+    .equals {
+      background: #ff9500;
+      color: #fff;
+    }
+
+    .equals:hover {
+      background: #e08900;
+    }
+
+    .clear {
+      color: #ff3b30;
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.1); }
+      100% { transform: scale(1); }
+    }
+
+    .equals:active {
+      animation: pulse 0.2s ease-in-out;
+    }
+
+    @media (max-width: 400px) {
+      .calculator {
+        width: 280px;
+      }
+
+      .display {
+        font-size: 1.5rem;
+        padding: 15px;
+      }
+
+      button {
+        font-size: 1rem;
+        padding: 12px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="calculator">
+    <div class="display" id="display">0</div>
+    <div class="buttons">
+      <button class="clear" onclick="clearDisplay()">C</button>
+      <button class="operator" onclick="appendToDisplay('(')">(</button>
+      <button class="operator" onclick="appendToDisplay(')')">)</button>
+      <button class="operator" onclick="appendToDisplay('/')">÷</button>
+      <button onclick="appendToDisplay('7')">7</button>
+      <button onclick="appendToDisplay('8')">8</button>
+      <button onclick="appendToDisplay('9')">9</button>
+      <button class="operator" onclick="appendToDisplay('*')">×</button>
+      <button onclick="appendToDisplay('4')">4</button>
+      <button onclick="appendToDisplay('5')">5</button>
+      <button onclick="appendToDisplay('6')">6</button>
+      <button class="operator" onclick="appendToDisplay('-')">-</button>
+      <button onclick="appendToDisplay('1')">1</button>
+      <button onclick="appendToDisplay('2')">2</button>
+      <button onclick="appendToDisplay('3')">3</button>
+      <button class="operator" onclick="appendToDisplay('+')">+</button>
+      <button onclick="appendToDisplay('0')">0</button>
+      <button onclick="appendToDisplay('.')">.</button>
+      <button onclick="backspace()">←</button>
+      <button class="equals" onclick="calculate()">=</button>
+    </div>
+  </div>
+
+  <script>
+    let display = document.getElementById('display');
+
+    function appendToDisplay(value) {
+      if (display.innerText === '0' && value !== '.') {
+        display.innerText = value;
+      } else {
+        display.innerText += value;
+      }
+      animateDisplay();
+    }
+
+    function clearDisplay() {
+      display.innerText = '0';
+      animateDisplay();
+    }
+
+    function backspace() {
+      if (display.innerText.length > 1) {
+        display.innerText = display.innerText.slice(0, -1);
+      } else {
+        display.innerText = '0';
+      }
+      animateDisplay();
+    }
+
+    function calculate() {
+      try {
+        let result = eval(display.innerText.replace('×', '*').replace('÷', '/'));
+        if (isFinite(result)) {
+          display.innerText = result;
+        } else {
+          display.innerText = 'Error';
+        }
+      } catch (e) {
+        display.innerText = 'Error';
+      }
+      animateDisplay();
+    }
+
+    function animateDisplay() {
+      display.style.animation = 'none';
+      display.offsetHeight; // Trigger reflow
+      display.style.animation = 'fadeIn 0.3s ease-in-out';
+    }
+  </script>
+</body>
+</html>
